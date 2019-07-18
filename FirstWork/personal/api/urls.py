@@ -1,27 +1,17 @@
 
-from .views import PersonalViewSet,SimpleApiView
+from .views import *
 from rest_framework.routers import DefaultRouter
 from django.urls import path, include
 
 
 router = DefaultRouter()
-router.register(r'', PersonalViewSet, basename='Personal')
+router.register(r'all', PersonalViewSet )
 
 
-from .views import (
-    PersonalListView, 
-    PersonalRetrieveView, 
-    PersonalCreateView, 
-    PersonalDestroyView,
-    PersonalUpdateView
-)
+
+from .views import *
 
 urlpatterns = [
-    path('all/',include(router.urls)),
-    path('',PersonalListView.as_view()),
-    path('create/',PersonalCreateView.as_view()),
-    path('<pk>/',PersonalRetrieveView.as_view()),
-    path('<pk>/update/',PersonalUpdateView.as_view()),
-    path('<pk>/delete/',PersonalDestroyView.as_view()),
+    path('',include(router.urls)),
     path('encode/', SimpleApiView.as_view()),
 ]

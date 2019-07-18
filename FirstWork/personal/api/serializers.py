@@ -4,4 +4,5 @@ from ..models import Personal
 class PersonalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Personal
-        fields = ('id','first_name','last_name','phone_no','email')
+        fields = '__all__'
+        extra_kwargs = {'user_profile' : {'read_only':True}}
